@@ -1,8 +1,8 @@
 enablePlugins(ScalaJSPlugin, BuildInfoPlugin)
 
-name := "my_app"
+name := "reader"
 
-version := "0.0.1"
+version := "1.1.0"
 
 scalaVersion := "2.12.4"
 
@@ -32,8 +32,42 @@ addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.fu
 scalacOptions += "-unchecked"
 scalacOptions += "-deprecation"
 
+lazy val spa = taskKey[Unit]("Assemble single-page app from html templates and generated CSS and JS output")
+
 import scala.io.Source
 import java.io.PrintWriter
 
+spa := {
+
+//  val defaultLibraryUrl = "https://raw.githubusercontent.com/cite-architecture/citedx/master/libraries/millionplus.cex"
+  val defaultLibraryUrl = "https://raw.githubusercontent.com/Eumaeus/fuCiteDX/master/million.cex"
+  //val defaultLibraryUrl = "https://raw.githubusercontent.com/Eumaeus/fuCiteDX/master/fu-spring2018.cex"
+  val serverMode = false 
+  val defaultLibraryDelimiter = "#"
+  val defaultImagePath = "" // Path prefixed to the named directories for local images
+
+  val compileFirst = (fullOptJS in Compile).value
+
+  val junk = "//# sourceMappingURL=reader-opt.js.map"
+  val js = Source.fromFile("target/scala-2.12/reader-opt.js").getLines.mkString("\n").replaceAll(junk,"")
+
+  val css = Source.fromFile("target/scala-2.12/classes/application.css").getLines.mkString("\n")
+
+  val template1 = "src/main/resources/cite-TEMPLATE1.html"
+  val template1Text = Source.fromFile(template1).getLines.mkString("\n").replaceAll("ACTUALVERSION", version.value).replaceAll("ACTUALCSS",css)
+
+
+  val urlPlaceholder = "DEFAULTLIBRARYURL"
+  val delimiterPlaceholder = "DEFAULTLIBRARYDELIMITER"
+  val imagePathPlaceholder = "DEFAULTIMAGEPATH"
+  val serverModePlaceholder = "SERVERMODE"
+
+  val template2Text = Source.fromFile("src/main/resources/cite-TEMPLATE2.html").getLines.mkString("\n").replaceAll(urlPlaceholder,defaultLibraryUrl).replaceAll(delimiterPlaceholder,defaultLibraryDelimiter).replaceAll(imagePathPlaceholder,defaultImagePath).replaceAll(serverModePlaceholder,serverMode.toString)
+  val newFile = "downloads/reader-" + version.value + ".html"
+  new PrintWriter(newFile) { write(template1Text + js + template2Text); close }
+  println("Runnable single-page app is in " + newFile)
+}
+
+
 buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
-buildInfoPackage := "my_app"
+buildInfoPackage := "reader"
