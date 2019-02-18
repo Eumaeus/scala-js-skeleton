@@ -1,5 +1,58 @@
 
+/* Alignment */
+.alignedNode0 {
+	background-color: #ffe119;
+	color: black;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
+.alignedNode1 {
+	background-color: #4363d8;
+	color: white;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode2 {
+	background-color: #f58231;
+	color: white;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode3 {
+	background-color: #fabebe;
+	color: black;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode4 {
+	background-color: #e6beff;
+	color: black;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode6 {
+	background-color: #800000;
+	color: white;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
 /* Appwide Stuff */
 
@@ -308,8 +361,6 @@ div.o2_versionContainer {
 }
 
 .o2_passage {
-	margin: 0;
-	padding: 0;
 }
 
 div.o2_navLinks {
@@ -493,7 +544,14 @@ div#o2_navButtonContainer_top{
 	color: #333;
 }
 
-.o2_passage:hover .o2_passageUrn, .long .o2_passage .o2_passageUrn{
+
+.short .o2_passage:hover .o2_passageUrn {
+	display:inline-block;
+	margin-right: -0.1em;
+	margin-left: 0.25em;
+}
+
+.long .o2_passage:hover .o2_passageUrn, .long .o2_passage .o2_passageUrn{
 	display:inline-block;
 	width:auto;
 	position: initial;

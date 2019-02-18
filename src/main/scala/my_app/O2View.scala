@@ -115,9 +115,9 @@ def seeAllVersionsButton(vCorp:O2Model.BoundCorpus) = {
 	<button
 		disabled = { if (vCorp.versionsAvailable.bind > 1) false else true }
 		onclick = { event: Event => {
-				O2Model.displayUrn.value = O2Model.collapseToWorkUrn(O2Model.urn.value)
+				O2Model.displayUrn.value = O2Model.collapseToWorkUrn(vCorp.versionUrn.value)
 				//O2Model.displaynewpassage(O2Model.displayUrn.value)
-				O2Model.updateTextInCurrentCorpus(vCorp.versionUrn.value, O2Model.collapseToWorkUrn(O2Model.urn.value))
+				O2Model.updateTextInCurrentCorpus(vCorp.versionUrn.value, O2Model.collapseToWorkUrn(vCorp.versionUrn.value))
 		}}
 	>
 		See All Versions of Passage
@@ -212,7 +212,7 @@ def versionNodes(vCorp:O2Model.BoundCorpus) = {
 						n.text.size match {
 							case s if (s < 20) => {
 								n.urn.exemplarOption match {
-									case Some(eo) => " "
+									case Some(eo) => " short"
 									case None => " long"
 								}
 							}
@@ -227,6 +227,27 @@ def versionNodes(vCorp:O2Model.BoundCorpus) = {
 					}
 					<p class={ passageClass }>
 						<span 
+							onclick={ event: Event => {
+								val textIndex:Int = {
+									val tempV:Vector[CtsUrn] = O2Model.currentCorpus.value.toVector.map(_.versionUrn.value)
+									g.console.log(s"""${tempV.mkString(" ")}""")
+									val vu:CtsUrn = vCorp.versionUrn.value
+									g.console.log(s"vu = ${vu}")
+									tempV.indexOf(vu)
+								}
+								g.console.log(s"index = ${textIndex}")
+								val el = js.Dynamic.global.document.getElementById(s"node_${n.urn}").asInstanceOf[HTMLAnchorElement]
+								val classList:String = el.getAttribute("class")
+								if (classList.contains("alignedNode")) {
+									val newCL:String = classList.replaceAll("alignedNode[0-9]","").replaceAll("  "," ")
+									el.setAttribute("class",newCL)
+								} else {
+									val newCL:String = classList + s" alignedNode${textIndex}"
+									el.setAttribute("class",newCL)
+								}
+
+								g.console.log(s"Got: ${classList}")
+							}}
 							class="o2_passage"
 							id={ s"node_${n.urn}"} >
 							{ nodeCitationSpan(n.urn).bind }
