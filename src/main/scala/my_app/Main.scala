@@ -1,4 +1,4 @@
-package my_app 
+package reader 
 import com.thoughtworks.binding.{Binding, dom}
 import com.thoughtworks.binding.Binding.{BindingSeq, Var, Vars}
 import com.thoughtworks.binding.Binding.{Var, Vars}

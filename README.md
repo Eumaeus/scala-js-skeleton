@@ -1,17 +1,23 @@
-# Skeleton for a ScalaJS Application
+# CITE Text Reader
 
-A bare-bones skeleton for a ScalaJS app, via an SBT build.
+A basic CITE Reading Environment as a ScalaJS app. Load multiple texts in parallel, navigate them independently.
 
-For simple examples, using external libraries, based on this skeleton, please see:
+Accepts multiple CTS URNs as request-parameters, *e.g.* 
 
-- <https://github.com/Eumaeus/greekTyper>
-- <https://github.com/Eumaeus/pos-tagger>
+~~~
+reader-1.1.0.html?urn=urn:cts:greekLit:tlg0016.tlg001.grc:1.2&urn=urn:cts:latinLit:phi1038.phi001.omar:1.pr.1
+~~~
 
-For much, much more complicated examples, including external Javascript libraries, please see:
+## Current version: 1.1.0
 
-- <https://github.com/cite-architecture/CITE-App>
-- <https://github.com/cite-architecture/Server-CITE-App>
+See [release notes](releases.md).
 
-Questions via Issue tracker.
+## License
 
-Original code released under CC0, to the Public Domain. Dependent libraries and the examples linked above have their own license terms.
+[GPL 3.0](https://opensource.org/licenses/gpl-3.0.html)
+
+CITE Application, by default, downloads a sample corpus of texts. Licensing and attribution for those texts is available in the [downloads directory](downloads).
+
+## Credits
+
+© 2019: Neel Smith and Christopher Blackwell. Available for use, modification, and distribution under the terms of the [GPL 3.0](https://opensource.org/licenses/gpl-3.0.html) license. Based on the [CITE and CTS protocols](http://cite-architecture.github.io), by Neel Smith and Christopher Blackwell.

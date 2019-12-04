@@ -1,5 +1,58 @@
 
+/* Alignment */
+.alignedNode0 {
+	background-color: #ffe119;
+	color: black;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
+.alignedNode1 {
+	background-color: #4363d8;
+	color: white;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode2 {
+	background-color: #f58231;
+	color: white;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode3 {
+	background-color: #fabebe;
+	color: black;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode4 {
+	background-color: #e6beff;
+	color: black;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.alignedNode6 {
+	background-color: #800000;
+	color: white;
+	padding: 2px;
+	border: solid 0px #EEEEEE;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
 /* Appwide Stuff */
 
@@ -114,15 +167,22 @@ a:hover {
 
 .app_message {
 	max-width: 500px;
-	font-size: 65%;
+	font-size: 7pt;
 	font-weight: normal;
 	min-height: 1em;
-	float: right;
 	-webkit-transition: all 0.5s ease-out 1s;
 	-moz-transition: all 0.5s ease-out 1s;
 	-ms-transition: all 0.5s ease-out 1s;
 	-o-transition: all 0.5s ease-out 1s;
 	transition: all 0.5s ease-out 1s;
+	position:absolute;
+	top: -25px;
+	right: 5px;
+}
+
+.o2_message {
+	top: 70px;
+	right: 5px;
 }
 
 
@@ -246,8 +306,8 @@ select#ngram_nGramScopeOption {
 	font-size: 80%;
 	color: #888;
 	line-height: 1.1em;
-	padding-bottom: 15px;
-	padding-top: 15px;
+	padding-bottom: 5px;
+	padding-top: 5px;
 }
 
 p.o2_textPassage {
@@ -273,14 +333,57 @@ div.o2_citationBlock p.long {
 
 
 div.o2_versionContainer {
-	width: 40em;
+	max-width: 40em;
 	float: left;
-	margin-right: 2em;
+	margin-right: 1em;
+	margin-top: 15px;
+	background-color: #fcfcfc;
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+.oneOf1 {
+	width: 100%;
+}
+
+.oneOf2 {
+	width: 45%;
+}
+
+.oneOf3 {
+	width: 30%;
+	font-size: 85%;
+}
+
+.oneOf4 {
+	width: 22%;
+	font-size: 80%;
 }
 
 .o2_passage {
+}
+
+div.o2_navLinks {
+	display: flex;                  /* establish flex container */
+	flex-direction: row;            /* default value; can be omitted */
+	flex-wrap: nowrap;              /* default value; can be omitted */
+	justify-content: space-between; /* switched from default (flex-start, see below) */
+}
+
+div.o2_navLinks > button {
 	margin: 0;
-	padding: 0;
+/* font-weight: bold; */
+/* height: 2em; */
+text-align: center;
+}
+
+button.o2_prevLink {
+}
+
+button.o2_nextLink {
+}
+
+button.o2_removeLink {
 }
 
 .o2_passageInDse, .o2_commentary {
@@ -363,7 +466,6 @@ div.o2_versionContainer {
 #o2_passageContainer {
 	padding-bottom: 5px;
 	min-height: 100px;
-	max-width: 66%;
 }
 
 .rtl {
@@ -398,12 +500,17 @@ div.o2_1_cols{
 
 
 div#o2_citedWorksMenu.dropdown, div#ngram_citedWorksMenu.dropdown, div#ngram_previousSearchMenu.dropdown {
-	width: 100%;
-	min-width: 17em;
+width: 8em;
+/* min-width: 17em; */
+/* float: right; */
+font-size: 85%;
+/* margin-right: 2em; */
+	background-color: #fcfcfc;
+
 }
 
 span#o2_citedWorksMenuTitle, span#ngram_citedWorksMenuTitle {
-	font-size: 100%;
+	font-size: 85%;
 	font-weight: bold;
 }
 
@@ -411,6 +518,7 @@ div#o2_urnHistoryMenu.dropdown {
 	font-size: 85%;
 	max-width: 20em;
 	margin-top: 0.5em;
+	background-color: #fcfcfc;
 }
 
 div#o2_urnHistoryButton {
@@ -431,33 +539,36 @@ div#o2_navButtonContainer_bottom{
 }
 
 div#o2_navButtonContainer_top{
-	padding-bottom: 15px;
 	margin-top: 5px;
 	font-size: 85%;
 	color: #333;
-	float:right;
 }
 
 
+.short .o2_passage:hover .o2_passageUrn {
+	display:inline-block;
+	margin-right: -0.1em;
+	margin-left: 0.25em;
+}
 
-.o2_passageUrn:hover:before{
-	/* content: "⚭"; */
-	width: 2em;
-	position:absolute;
-	left: -1em;
-	font-size: 150%;
-	color: #7273af;
+.long .o2_passage:hover .o2_passageUrn, .long .o2_passage .o2_passageUrn{
+	display:inline-block;
+	width:auto;
+	position: initial;
 }
 
 .o2_passageUrn {
-	color: rgb(207, 205, 209);	
-	font-size: 80%;
-	padding-bottom: 3px;
-	margin-right: -0.1em;
-	margin-left: 0.25em;
-	vertical-align: baseline;
-  position: relative;
-  top: -0.4em;
+color: rgb(207, 205, 209);
+font-size: 80%;
+padding-bottom: 3px;
+/* margin-right: -0.1em; */
+/* margin-left: 0.25em; */
+vertical-align: baseline;
+position: relative;
+top: -1.3em;
+display: none;
+right: 0em;
+width: 0;
 }
 
 /* Drop Down Menu Stuff */
@@ -570,6 +681,7 @@ html,
 body {
 	height: 100%;
 	padding: 15px;
+	background-color: ##f6f6f6;
 }
 
 #main-wrapper {

@@ -1,4 +1,4 @@
-package my_app 
+package reader
 
 import com.thoughtworks.binding.{Binding, dom}
 import com.thoughtworks.binding.Binding.{BindingSeq, Var, Vars}
@@ -17,7 +17,7 @@ import js.annotation._
 
 @JSExportTopLevel("MainView")
 object MainView {
-	//val textView = O2View.o2div
+	val textView = O2View.o2div
 
 	@dom
 	def mainMessageDiv = {
@@ -30,14 +30,15 @@ object MainView {
 	def mainDiv = {
 		<div id="main-wrapper">
 		<header>
-			My Application
+			CITE Text Reader
 			<span id="app_header_versionInfo">version { BuildInfo.version }</span>
+			{ filePicker.bind }
 		</header>
 
 		<article id="main_Container">
 
 			{ mainMessageDiv.bind }
-			{ welcomeDiv.bind }
+			{ textView.bind }
 			
 
 		</article>
@@ -48,20 +49,24 @@ object MainView {
 	</div>
 	}
 
-	@dom
-	def welcomeDiv = {
-		<div>
-			<p>{ MainModel.welcomeMessage.bind }</p>
-		</div>
-
-	}
-
 
 	@dom
 	def footer = {
 		<p>
-		CITE/CTS is ©2002–2018 Neel Smith and Christopher Blackwell. 
+		CITE/CTS is ©2002–2019 Neel Smith and Christopher Blackwell. Licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL 3.0</a>. Sourcecode on <a href="https://github.com/cite-architecture/CITE-Text-Reader">GitHub</a>.
 		</p>
+	}
+
+	@dom
+	def filePicker = {
+		<span id="app_filePickerSpan">
+			<label for="app_filePicker">Choose a local <code>.cex</code> file</label>
+			<input
+				id="app_filePicker"
+				type="file"
+				onchange={ event: Event => MainController.loadLocalLibrary( event )}
+				></input>
+		</span>
 	}
 
 }
